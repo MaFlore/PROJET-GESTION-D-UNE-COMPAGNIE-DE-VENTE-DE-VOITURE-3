@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block gestion_page %}Clients
+{% endblock %}
+{% block page_courante %}
+{% endblock %}
+
+{% block contenu %}
+
+<body class="g-sidenav-show  bg-gray-200">
+    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+      <div class="container">
+      <div class="row">
+          <div class="col-12">
+            <div class="card my-4">
+              <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                  <h6 class="text-white text-capitalize ps-3">Clients recherchés</h6>
+                  
+                </div>
+              </div>
+              <div >
+              </div>
+                    <div class="table-responsive p-0">
+                      <table class="table align-items-center mb-0">
+                        <thead>
+                          <tr>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ordre</th> 
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">CNI</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nom</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Prenom</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Telephone</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nom d'utilisateur</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mot de passe</th>
+                          </tr>
+                        </thead>
+      
+                        <tbody>
+                        {% for client in clients %}
+                          <tr>
+                            <td class="align-middle text-center">{{loop.index}}</td>
+                            <td class="align-middle text-center">{{client.cni}}</td>
+                            <td class="align-middle text-center">{{client.nom}}</td>
+                            <td class="align-middle text-center">{{client.prenom}}</td>
+                            <td class="align-middle text-center">{{client.telephone}}</td>
+                            <td class="align-middle text-center">{{client.nomUtilisateur}}</td>
+                            <td class="align-middle text-center">{{client.motDePasse}}</td>
+                          </tr>
+                          {% else %}
+                          <div>
+                            <td>
+                              <h5>Aucun client ne correspond à cette recherche</h5>
+                            </td>
+                          </div>
+                        {% endfor %}
+                        </tbody>
+                      </table>
+                      <div class="align-middle text-center">
+                        <a href="/client" ><button class="btn btn-info m-3">Retour à la liste de tous les clients</button></a>
+                    </div>
+          </div>
+</body>
+{% endblock %}
+

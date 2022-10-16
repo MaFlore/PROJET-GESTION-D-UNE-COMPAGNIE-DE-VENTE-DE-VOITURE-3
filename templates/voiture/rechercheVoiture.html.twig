@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block gestion_page %}Voitures 
+{% endblock %}
+{% block page_courante %}
+
+{% endblock %}
+
+{% block contenu %}
+
+<body class="g-sidenav-show  bg-gray-200">
+    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+      <div class="container">
+      <div class="row">
+          <div class="col-12">
+            <div class="card my-4">
+              <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                  <h6 class="text-white text-capitalize ps-3">Listes de voitures recherchées</h6>
+                  
+                </div>
+              </div>
+                    <div class="table-responsive p-0">
+                      <table class="table align-items-center mb-0">
+                        <thead>
+                          <tr>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ordre</th> 
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Marque</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Modèle</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Numero identifiant</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Numero serie</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date achat</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Couleur</th>                
+                          </tr>
+                        </thead>
+      
+                        <tbody>
+                        {% for voiture in voitures %}
+                          <tr>
+                            <td class="align-middle text-center">{{loop.index}}</td>
+                            <td class="align-middle text-center">{{voiture.marque}}</td>
+                            <td class="align-middle text-center">{{voiture.modele}}</td>
+                            <td class="align-middle text-center">{{voiture.numeroIdentifiant}}</td>
+                            <td class="align-middle text-center">{{voiture.numeroSerie}}</td>
+                            <td class="align-middle text-center">{{voiture.getDateAchat()|date('d-m-Y')}}</td>
+                            <td class="align-middle text-center">{{voiture.couleur}}</td>
+                          </tr>
+                          {% else %}
+                          <div>
+                            <td>
+                              <h5>Aucune voiture ne correspond à cette recherche</h5>
+                            </td>
+                          </div>
+                        {% endfor %}
+                        </tbody>
+                        
+                      </table>
+                      
+                      <div class="align-middle text-center">
+                        <a href="/voiture" ><button class="btn btn-info m-3">Retour à la liste de toutes les voitures</button></a>
+                    </div>
+          </div>
+</body>
+{% endblock %}
+

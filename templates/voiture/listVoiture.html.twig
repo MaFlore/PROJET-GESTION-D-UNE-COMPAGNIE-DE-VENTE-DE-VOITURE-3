@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block gestion_page %}Voitures 
+<form method="POST" class="align-middle text-center">
+  <select name="selectrecherche">
+      <option>Selectionnez ce que vous voulez chercher ?</option>
+      <option value="numeroSerie">Numero série</option>
+      <option value="numeroIdentifiant">Numero identifiant</option>
+      <option value="modele">Modèle</option>
+  </select>
+</br>
+</br>
+  <label for="searchvoiture">Entrez votre recherche ici ! : </label>
+  <input style ="border-radius: 6px" name="searchvoiture" required>
+</br>
+  </br>
+      <button type="submit" class="btn btn-info">Recherchez</button>
+</form>
+{% endblock %}
+{% block page_courante %}
+
+{% endblock %}
+
+{% block contenu %}
+
+<body class="g-sidenav-show  bg-gray-200">
+    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+      <div class="container">
+      <div class="row">
+          <div class="col-12">
+            <div class="card my-4">
+              <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                  <h6 class="text-white text-capitalize ps-3">Listes de voitures</h6>
+                  
+                </div>
+              </div>
+              <div >
+                  <a href="/ajoutVoiture" style="float: left;"><button class="btn btn-success m-3">Ajouter une voiture</button></a>
+
+              </div>
+                    <div class="table-responsive p-0">
+                      <table class="table align-items-center mb-0">
+                        <thead>
+                          <tr>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ordre</th> 
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Marque</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Modèle</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Numero identifiant</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Numero serie</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date achat</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Couleur</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Statut</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Actions</th>
+                            
+                          </tr>
+                        </thead>
+      
+                        <tbody>
+                        {% for voiture in voitures %}
+                          <tr>
+                            <td class="align-middle text-center">{{loop.index}}</td>
+                            <td class="align-middle text-center">{{voiture.marque}}</td>
+                            <td class="align-middle text-center">{{voiture.modele}}</td>
+                            <td class="align-middle text-center">{{voiture.numeroIdentifiant}}</td>
+                            <td class="align-middle text-center">{{voiture.numeroSerie}}</td>
+                            <td class="align-middle text-center">{{voiture.getDateAchat()|date('d-m-Y')}}</td>
+                            <td class="align-middle text-center">{{voiture.couleur}}</td>
+                            <td class="align-middle text-center">{% if voiture.statut==0 %}
+                              Accessible
+                              {% else %}
+                              Vendu
+                              {% endif %}
+                            </td>
+                            <td class="align-middle">
+                              <a href="/editVoiture/{{voiture.id}}" class="btn btn-warning" data-toggle="tooltip" style="padding: 10;" data-original-title="Edit user">Modifier</a>
+                              <a href="/deletePage/{{voiture.id}}" class="btn btn-danger" data-toggle="tooltip" style="padding: 10;" data-original-title="Edit user">Supprimer</a>
+                            </td>
+                          </tr>
+                        {% endfor %}
+                        </tbody>
+                      </table>
+                      
+          </div>
+</body>
+{% endblock %}
+
